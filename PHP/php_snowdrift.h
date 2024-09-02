@@ -51,21 +51,20 @@ extern zend_module_entry snowdrift_module_entry;
 #define ZEND_ACC_DTOR 0
 #endif
 
+#define SD_G(v) ZEND_MODULE_GLOBALS_ACCESSOR(snowdrift, v)
+
 ZEND_BEGIN_MODULE_GLOBALS(snowdrift)
 uint8_t Method;
 uint64_t BaseTime;
-uint8_t WorkerId;
+uint16_t WorkerId;
 uint8_t WorkerIdBitLength;
 uint8_t SeqBitLength;
 uint32_t MaxSeqNumber;
 uint32_t MinSeqNumber;
 uint16_t TopOverCostCount;
+uint8_t Multi;
 
 ZEND_END_MODULE_GLOBALS(snowdrift)
-
-ZEND_DECLARE_MODULE_GLOBALS(snowdrift)
-
-#define SD_G(v) ZEND_MODULE_GLOBALS_ACCESSOR(snowdrift, v)
 
 #if defined(ZTS) && defined(COMPILE_DL_SNOWDRIFT)
 ZEND_TSRMLS_CACHE_EXTERN()

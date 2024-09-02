@@ -1,6 +1,6 @@
 /*
  * 版权属于：yitter(yitter@126.com)
- * 开源地址：https://gitee.com/yitter/idgenerator
+ * 开源地址：https://github.com/yitter/idgenerator
  */
 package com.github.yitter.idgen;
 
@@ -10,7 +10,6 @@ import com.github.yitter.contract.IdGeneratorException;
 import com.github.yitter.contract.IdGeneratorOptions;
 import com.github.yitter.core.SnowWorkerM1;
 import com.github.yitter.core.SnowWorkerM2;
-
 
 public class DefaultIdGenerator implements IIdGenerator {
 
@@ -40,7 +39,8 @@ public class DefaultIdGenerator implements IIdGenerator {
             maxWorkerIdNumber = 63;
         }
         if (options.WorkerId < 0 || options.WorkerId > maxWorkerIdNumber) {
-            throw new IdGeneratorException("WorkerId error. (range:[0, " + (maxWorkerIdNumber > 0 ? maxWorkerIdNumber : 63) + "]");
+            throw new IdGeneratorException(
+                    "WorkerId error. (range:[0, " + (maxWorkerIdNumber > 0 ? maxWorkerIdNumber : 63) + "]");
         }
 
         // 4.SeqBitLength
@@ -60,6 +60,11 @@ public class DefaultIdGenerator implements IIdGenerator {
         // 6.MinSeqNumber
         if (options.MinSeqNumber < 5 || options.MinSeqNumber > maxSeqNumber) {
             throw new IdGeneratorException("MinSeqNumber error. (range:[5, " + maxSeqNumber + "]");
+        }
+
+        // 7.TopOverCostCount
+        if (options.TopOverCostCount < 0 || options.TopOverCostCount > 10000) {
+            throw new IdGeneratorException("TopOverCostCount error. (range:[0, 10000]");
         }
 
         switch (options.Method) {

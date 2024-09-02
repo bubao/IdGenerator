@@ -1,6 +1,6 @@
 /*
 * 版权属于：yitter(yitter@126.com)
- * 开源地址：https://gitee.com/yitter/idgenerator
+ * 开源地址：https://github.com/yitter/idgenerator
 */
 module core
 
@@ -138,6 +138,7 @@ fn (mut m1 SnowWorkerM1) next_normal_id() u64 {
 			}
 			// m1.begin_turn_back_action(m1.turn_back_timetick)
 		}
+
 		return m1.calc_turn_back_id()
 	}
 	// 时间追平时，turn_back_timetick清零
